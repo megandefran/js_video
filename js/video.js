@@ -2,24 +2,11 @@ var video;
 
 window.addEventListener("load", function() {
 	console.log("Good job opening the window")
-
+	video.autoplay = false;
+	video.loop = false;
 });
 
-//document.querySelector("#play").addEventListener("click", function() {
-// 	console.log("Play Video");
-// });
-
 var video = document.getElementById("player1");
-var play = document.getElementById("play");
-//var pause = document.querySelector("#pause");
-//var slow = document.getElementById("slower");
-//var fast = document.getElementById("faster");
-//var skip = document.getElementById("skip");
-//var mute = document.getElementById("mute");
-//var slider = document.getElementById("slider");
-//var info = document.getElementById("volumeInfo");
-//var vintage = document.getElementById("vintage");
-//var orig = document.getElementById("orig");
 
 
 document.querySelector("#pause").addEventListener("click", function () {
@@ -56,8 +43,9 @@ document.querySelector("#mute").addEventListener("click", function () {
 });
 
 document.querySelector("#slider").addEventListener("input", function () {
-    video.volume = volumeSlider.value;
-    volumeInfo.textContent = "Volume: " + (volumeSlider.value * 100).toFixed(0) + "%";
+    video.volume = (this.value / 100.0);
+	document.querySelector("#volume").innerHTML = ((video.volume * 100.0) + "%");
+    video.slider();
 });
 
 document.querySelector("#vintage").addEventListener("click", function () {
